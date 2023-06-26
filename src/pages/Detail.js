@@ -3,11 +3,14 @@ import { useParams } from "react-router-dom"
 import Nav from 'react-bootstrap/Nav'
 import '../App.css';
 import { Context1 } from './../App.js'
+import { addCart } from '../store.js';
+import { useDispatch } from "react-redux";
 
 
 export default function Detail(props) {
 
   let {재고} = useContext(Context1)
+  let dispatch = useDispatch()
 
   const [value, setValue] = useState('')
 
@@ -44,7 +47,7 @@ export default function Detail(props) {
             <h4 className="pt-5">{props.상품정보[id].title}</h4>
             <p>{props.상품정보[id].content}</p>
             <p>{props.상품정보[id].price.toLocaleString()} 원</p>
-            <button className="btn btn-danger">주문하기</button> 
+            <button className="btn btn-danger" onClick={() => { dispatch(addCart( { id: props.상품정보[id].id, title: props.상품정보[id].title, count: 1 } )) }}>주문하기</button> 
           </div>
         </div>
         <Nav variant="tabs" defaultActiveKey="link0">

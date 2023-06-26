@@ -3,6 +3,7 @@ import './App.css';
 import { Container, Nav, Navbar, Row, Col, NavDropdown }  from 'react-bootstrap';
 import data from './data.js'
 import Detail from './pages/Detail.js'
+import Cart from './pages/Cart.js'
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 import axios from 'axios'
 
@@ -34,6 +35,7 @@ function App() {
           <Navbar.Brand href="/">REACT SHOP</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link onClick={() => { naviagte('/')}}>Home</Nav.Link>
+            <Nav.Link onClick={() => { naviagte('/cart')}}>Cart</Nav.Link>
             <NavDropdown
               id="nav-dropdown-dark-example"
               title="About"
@@ -87,6 +89,7 @@ function App() {
         <Route path="/detail/:id" element={
           <Context1.Provider value={{재고, shoes}}><Detail 상품정보={shoes}/></Context1.Provider> }
         />
+        <Route path="/cart" element={ <Cart /> }/>
         {/** Nested Route
          * 장점 1: route 작성이 간단해진다.
          * 2 : element가 2개가 보여진다. 상위 컴포넌트의 지정된 위치(Outlet 컴포넌트)에 하위 컴포넌트가 보여진다.
